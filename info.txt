@@ -3,10 +3,12 @@
 git init
 git add .
 git status
-git commit -m 'title mistake corr' - обновляет изменения локально
+git commit -m 'commenced hw_13' - обновляет изменения локально
 git branch -M main
 git remote add origin https://github.com/PetroGitHub/ashtangacards.gitgit 
 git push -u origin main
+git push origin homework_13
+
 git branch dev  -  создаем ветку dev
 git checkout dev
 git push origin dev  - отправляем на GitHub ветка dev.
