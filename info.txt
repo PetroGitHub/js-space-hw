@@ -3,7 +3,7 @@
 git init
 git add .
 git status
-git commit -m 'commenced hw_13' - обновляет изменения локально
+git commit -m 'corr task # 1 completed' - обновляет изменения локально
 git branch -M main
 git remote add origin https://github.com/PetroGitHub/ashtangacards.gitgit 
 git push -u origin main
