@@ -30,8 +30,9 @@ makeTheme('themes.css');
 
 /* --- 04 --- */
 const body = document.querySelector('body');
-//console.log(body);
 body.classList.replace('theme-gold', 'theme-pink');
+body.classList.replace('theme-pink', 'theme-dark');
+//console.log(body);
 
 /* --- 05 --- */
 
