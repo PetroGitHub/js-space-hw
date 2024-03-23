@@ -1,12 +1,29 @@
 /* --- 01 --- */
 const head = document.querySelector('head');
-const darkTheme = '<link rel="stylesheet" href="./dark-theme.css"/>';
-head.insertAdjacentHTML('beforeEnd', darkTheme);
-console.log(head);
+const darkTheme = `<link rel="stylesheet" href="dark-theme.css"/>`;
+//head.insertAdjacentHTML('beforeEnd', darkTheme);
 
 /* --- 02 --- */
+const themes = '<link rel="stylesheet" href="./themes.css"/>';
+//head.insertAdjacentHTML('beforeEnd', themes);
+console.log(head);
 
 /* --- 03 --- */
+
+function makeTheme(file) {
+	const styleTheme = `<link rel="stylesheet" href="${file}"/>`;
+	head.insertAdjacentHTML('beforeEnd', styleTheme);
+
+	if (styleTheme) {
+		const wrapper = document.querySelector('.wrapper');
+		const warning = document.createElement('div');
+		warning.classList.add('msg');
+		warning.textContent = `Файл  стилів ${file} вже було додано'`;
+		wrapper.appendChild(warning);
+	}
+}
+makeTheme('dark-theme.css');
+makeTheme('themes.css');
 
 /* --- 04 --- */
 
