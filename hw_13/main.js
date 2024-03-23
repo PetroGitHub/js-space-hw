@@ -30,10 +30,16 @@ makeTheme('themes.css');
 
 /* --- 04 --- */
 const body = document.querySelector('body');
-body.classList.replace('theme-gold', 'theme-pink');
-body.classList.replace('theme-pink', 'theme-dark');
-//console.log(body);
+//body.classList.replace('theme-gold', 'theme-pink');
+//body.classList.replace('theme-pink', 'theme-dark');
+body.classList.remove('theme-gold');
 
+const applyBodyClass = (bodyClass) => {
+	body.classList.add(bodyClass);
+};
+applyBodyClass(`theme-pink`);
+applyBodyClass(`theme-gold`);
+applyBodyClass(`theme-dark`);
 /* --- 05 --- */
 
 /* --- 06 ---
