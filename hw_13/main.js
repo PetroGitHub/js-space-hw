@@ -1,28 +1,31 @@
 /* --- 01 --- */
-const head = document.querySelector('head');
-const darkTheme = `<link rel="stylesheet" href="dark-theme.css"/>`;
+//const head = document.querySelector('head');
+//const darkTheme = `<link rel="stylesheet" href="dark-theme.css"/>`;
 //head.insertAdjacentHTML('beforeEnd', darkTheme);
 
 /* --- 02 --- */
-const themes = '<link rel="stylesheet" href="./themes.css"/>';
+//const themes = '<link rel="stylesheet" href="./themes.css"/>';
 //head.insertAdjacentHTML('beforeEnd', themes);
-console.log(head);
+//console.log(head);
 
 /* --- 03 --- */
+const head = document.querySelector('head');
+const objStyles = {};
 
 function makeTheme(file) {
-	const styleTheme = `<link rel="stylesheet" href="${file}"/>`;
-	head.insertAdjacentHTML('beforeEnd', styleTheme);
-
-	if (styleTheme) {
+	if (objStyles[file]) {
 		const wrapper = document.querySelector('.wrapper');
 		const warning = document.createElement('div');
 		warning.classList.add('msg');
-		warning.textContent = `Файл  стилів ${file} вже було додано'`;
+		warning.textContent = `Файл  стилів ${file} вже було додано`;
 		wrapper.appendChild(warning);
 	}
+	const styleTheme = `<link rel="stylesheet" href="${file}"/>`;
+	head.insertAdjacentHTML('beforeEnd', styleTheme);
+	objStyles[file] = true;
 }
 makeTheme('dark-theme.css');
+//makeTheme('dark-theme.css');
 makeTheme('themes.css');
 
 /* --- 04 --- */
