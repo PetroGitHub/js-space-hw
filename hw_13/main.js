@@ -29,6 +29,9 @@ makeTheme('dark-theme.css');
 makeTheme('themes.css');
 
 /* --- 04 --- */
+const body = document.querySelector('body');
+//console.log(body);
+body.classList.replace('theme-gold', 'theme-pink');
 
 /* --- 05 --- */
 
