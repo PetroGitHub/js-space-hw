@@ -51,7 +51,7 @@ const applyBodyClass = (bodyClass) => {
 	body.classList.add(bodyClass);
 };
 ////! 4.5
-//applyBodyClass(`theme-dark`);
+//applyBodyClass(`theme-gold`);
 applyBodyClass(`theme-pink`);
 //applyBodyClass(`theme-dark`);
 
