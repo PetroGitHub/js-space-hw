@@ -29,31 +29,35 @@ function makeTheme(file) {
 	objStyles[file] = true;
 }
 //! 3.3
-makeTheme('dark-theme.css');
+makeTheme('./dark-theme.css');
+//makeTheme('./dark-theme.css');
+
 //! 3.4
-makeTheme('themes.css');
+makeTheme('./themes.css');
 //! 3.5
-//makeTheme('themes.css');
+makeTheme('themes.css');
 //! 5.2
-makeTheme('checkers.css');
+
 //! 7.1
-makeTheme('stylers.css');
+makeTheme('./stylers.css');
+makeTheme('./checkers.css');
 
 /* --- 04 --- */
 //! 4.1
-const body = document.querySelector('body');
+const body = document.body;
+
 //body.classList.replace('theme-gold', 'theme-pink');
 //! 4.2
 //body.classList.replace('theme-pink', 'theme-dark');
 body.classList.remove('theme-gold');
 ////! 4.3
-const applyBodyClass = (bodyClass) => {
+function applyBodyClass(bodyClass) {
 	body.classList.add(bodyClass);
-};
+}
 ////! 4.5
 //applyBodyClass(`theme-gold`);
-applyBodyClass(`theme-pink`);
-//applyBodyClass(`theme-dark`);
+//applyBodyClass(`theme-pink`);
+applyBodyClass(`theme-dark`);
 
 /* --- 05 --- */
 //! 5.1
@@ -93,11 +97,14 @@ function addScript(scriptFile) {
 	}
 }
 //! 5.6
+//addScript('./stylers.js');
+
 addScript('./checkers.js');
 //addScript('./checkers.js');
 //! 7.2
 addScript('./new-scripts.js');
 addScript('./stylers.js');
+//addScript('./stylers.js');
 
 console.log(body);
 
