@@ -12,14 +12,15 @@
 //! 3.1
 const head = document.querySelector('head');
 const objStyles = {};
-//console.log(head);
 function makeTheme(file) {
 	if (objStyles[file]) {
-		const wrapper = document.querySelector('.wrapper');
-		const warning = document.createElement('div');
-		warning.classList.add('msg');
-		warning.textContent = `Файл  стилів ${file} вже було додано`;
-		wrapper.appendChild(warning);
+		//const wrapper = document.querySelector('.wrapper');
+		//const warning = document.createElement('div');
+		//warning.classList.add('msg');
+		//warning.textContent = `Файл  стилів ${file} вже було додано`;
+		//wrapper.appendChild(warning);
+		//! 7.4
+		displayMessage(`'Файл  стилів ${file} вже було додано'`);
 		return;
 	}
 	const styleTheme = `<link rel="stylesheet" href="${file}"/>`;
@@ -35,6 +36,8 @@ makeTheme('themes.css');
 //makeTheme('themes.css');
 //! 5.2
 makeTheme('checkers.css');
+//! 7.1
+makeTheme('stylers.css');
 
 /* --- 04 --- */
 //! 4.1
@@ -43,14 +46,14 @@ const body = document.querySelector('body');
 //! 4.2
 //body.classList.replace('theme-pink', 'theme-dark');
 body.classList.remove('theme-gold');
-//! 4.3
+////! 4.3
 const applyBodyClass = (bodyClass) => {
 	body.classList.add(bodyClass);
 };
-//! 4.5
+////! 4.5
+//applyBodyClass(`theme-dark`);
 applyBodyClass(`theme-pink`);
-applyBodyClass(`theme-gold`);
-applyBodyClass(`theme-dark`);
+//applyBodyClass(`theme-dark`);
 
 /* --- 05 --- */
 //! 5.1
@@ -69,29 +72,32 @@ const objScript = {};
 
 function addScript(scriptFile) {
 	if (objScript[scriptFile]) {
-		const wrapper = document.querySelector('.wrapper');
-		const warning = document.createElement('div');
-		warning.classList.add('msg');
-		warning.textContent = `Файл  скриптів ${scriptFile} вже було додано`;
-		wrapper.appendChild(warning);
+		//const wrapper = document.querySelector('.wrapper');
+		//const warning = document.createElement('div');
+		//warning.classList.add('msg');
+		//warning.textContent = `Файл  скриптів ${scriptFile} вже було додано`;
+		//wrapper.appendChild(warning);
+		//! 7.4
+		displayMessage(`'Файл  скриптів ${scriptFile} було додано'`);
 		return;
 	}
 
 	const scriptElement = document.createElement('script');
 	scriptElement.src = scriptFile;
-	if (scriptFile === './checkers.js') {
-		script.before(scriptElement);
+	if (scriptFile === './new-scripts.js') {
+		script.after(scriptElement);
 		objScript[scriptFile] = true;
 	} else {
-		script.after(scriptElement);
+		script.before(scriptElement);
 		objScript[scriptFile] = true;
 	}
 }
 //! 5.6
 addScript('./checkers.js');
-addScript('./checkers.js');
+//addScript('./checkers.js');
+//! 7.2
 addScript('./new-scripts.js');
-//addScript('./new-scripts.js');
+addScript('./stylers.js');
 
 console.log(body);
 
@@ -100,6 +106,14 @@ console.log(body);
 */
 
 /* --- 07 --- */
+//! 7.3
+function displayMessage(message) {
+	const wrapper = document.querySelector('.wrapper');
+	const warning = document.createElement('div');
+	warning.classList.add('msg');
+	warning.textContent = `${message}`;
+	wrapper.appendChild(warning);
+}
 
 /* --- 08 ---
   Задача 08 виконується у файлі new-scripts.js 
