@@ -7,7 +7,7 @@ git commit -m 'task 9 & 10 completed' - обновляет изменения л
 git branch -M main
 git remote add origin https://github.com/PetroGitHub/ashtangacards.gitgit 
 git push -u origin main
-git push origin homework_13
+git push origin homework_14
 
 git checkout -b "homework_14" - создаем ветку "homework_14"
 git branch dev  -  создаем ветку dev
