@@ -8,19 +8,19 @@
 //button2.classList.add('active');
 
 //! 6.4-6
-function addClassActiveForTheme(checkerActive) {
-	//body.classList.add(checkerActive);
-	const buttons = document.querySelectorAll('button.' + checkerActive);
-	buttons.forEach((button) => {
-		//button.classList.remove('active');
-		if (button.classList.contains(checkerActive)) {
-			button.classList.add('active');
-		}
-	});
-}
-addClassActiveForTheme('theme-gold');
-addClassActiveForTheme('theme-pink');
-addClassActiveForTheme('theme-dark');
+//function addClassActiveForTheme(checkerActive) {
+//	//document.body.classList.add(checkerActive);
+//	const buttons = document.querySelectorAll('button.checker.' + checkerActive);
+//	buttons.forEach((button) => {
+//		button.classList.remove('active');
+//		if (button.classList.contains(checkerActive)) {
+//			button.classList.add('active');
+//		}
+//	});
+//}
+////addClassActiveForTheme('theme-gold');
+////addClassActiveForTheme('theme-pink');
+//addClassActiveForTheme('theme-gold');
 /* --- 08 --- */
 //!8.1
 //document.body.classList.add('styler-80');
@@ -32,52 +32,49 @@ addClassActiveForTheme('theme-dark');
 //function applyBodyBackground(bodyBackground) {
 //	body.classList.add(bodyBackground);
 //}
-//! 8.4
-//applyBodyBackground('styler-80');
-//applyBodyBackground('styler-90');
-//applyBodyBackground('styler-90');
+////! 8.4
+////applyBodyBackground('styler-80');
+////applyBodyBackground('styler-90');
+//applyBodyBackground('styler-00');
 
 /* --- 09 --- */
 //! 9.1
-//function applyBodyBackgroundAndStyles(bodyBackground, bodyTheme) {
-//	document.body.classList.add(bodyBackground, bodyTheme);
-//}
-//applyBodyBackgroundAndStyles('styler-80', 'theme-pink');
+function applyBodyBackgroundAndStyles(bodyBackground, bodyTheme) {
+	return body.classList.add(bodyBackground, bodyTheme);
+}
+applyBodyBackgroundAndStyles('styler-80', 'theme-dark');
 
 /* --- 10 --- */
 //! 10.1
 //function addClassActiveForBackground(stylerActive) {
-//	//body.classList.add(stylerActive);
-//	const btns = document.querySelectorAll('button.' + stylerActive);
-//	btns.forEach(function (btn) {
+//	document.body.classList.add(stylerActive);
+//	const btns = document.querySelectorAll('button.styler.' + stylerActive);
+//	btns.forEach((btn) => {
 //		btn.classList.remove('active');
 //		if (btn.classList.contains(stylerActive)) {
 //			btn.classList.add('active');
 //		}
 //	});
 //}
-//////////! 10.3
-//addClassActiveForBackground('styler-80');
+////////! 10.3
+//addClassActiveForBackground('styler-00');
 
 //! 10.4
 function addActiveForCheckerAndStyler(checker, styler) {
-	body.classList.add(styler, checker);
+	body.classList.add(checker, styler);
 	const checkerbtns = document.querySelectorAll('button.checker.' + checker);
-
-	checkerbtns.forEach(function (checkerbtn) {
+	const stylerbtns = document.querySelectorAll('button.styler.' + styler);
+	checkerbtns.forEach((checkerbtn) => {
 		checkerbtn.classList.remove('active');
 		if (checkerbtn.classList.contains(checker)) {
 			checkerbtn.classList.add('active');
 		}
 	});
-	const stylerbtns = document.querySelectorAll('button.' + styler);
-
 	stylerbtns.forEach((stylerbtn) => {
-		console.log(stylerbtns);
 		stylerbtn.classList.remove('active');
 		if (stylerbtn.classList.contains(styler)) {
 			stylerbtn.classList.add('active');
 		}
 	});
 }
-addActiveForCheckerAndStyler('theme-dark', 'styler-00');
+addActiveForCheckerAndStyler('theme-dark', 'styler-80');
