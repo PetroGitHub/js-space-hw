@@ -52,12 +52,12 @@ const body = document.body;
 body.classList.remove('theme-gold');
 ////! 4.3
 function applyBodyClass(bodyClass) {
-	body.classList.add(bodyClass);
+	document.body.classList.add(bodyClass);
 }
 ////! 4.5
 //applyBodyClass(`theme-gold`);
 //applyBodyClass(`theme-pink`);
-applyBodyClass(`theme-dark`);
+//applyBodyClass('theme-gold');
 
 /* --- 05 --- */
 //! 5.1
