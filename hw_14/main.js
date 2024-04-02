@@ -104,17 +104,44 @@ const colorsArray = [
 	'#c708ff',
 ];
 
+// task # 1
 const wrapperEl = document.querySelector('.wrapper');
-console.log(wrapperEl);
+//console.log(wrapperEl);
 const gridEl = document.createElement('div');
-const cellEl = document.createElement('div');
 
-gridEl.classList.add('grid');
 wrapperEl.insertAdjacentElement('afterbegin', gridEl);
 
 for (let i = 100; i > 0; i--) {
-	let cellEl = document.createElement('div');
+	const cellEl = document.createElement('div');
 	cellEl.textContent = i;
 	gridEl.insertAdjacentElement('afterbegin', cellEl);
 	cellEl.classList.add('cell');
 }
+
+// task # 2
+//! 2.1
+const topEl = document.createElement('div');
+const startBtn = document.createElement('button');
+//! 2.2
+const clickCounter = document.createElement('div');
+const scoreCounter = document.createElement('div');
+const replayBtn = document.createElement('button');
+
+function addElementIntoWrapper(commonEl, insertedEl, position = 'afterbegin') {
+	commonEl.insertAdjacentElement(position, insertedEl);
+}
+addElementIntoWrapper(wrapperEl, gridEl);
+addElementIntoWrapper(wrapperEl, topEl);
+addElementIntoWrapper(topEl, startBtn);
+
+function addClassToElements(elementName, className) {
+	elementName.className = className;
+}
+addClassToElements(gridEl, 'grid start');
+addClassToElements(topEl, 'top');
+addClassToElements(startBtn, 'btn btn-start btn-blue');
+addClassToElements(clickCounter, 'click-counter');
+addClassToElements(scoreCounter, 'counter score-counter');
+addClassToElements(replayBtn, 'btn btn-replay btn-violet;');
+
+//console.log(clickCounter, scoreCounter, replayBtn);
