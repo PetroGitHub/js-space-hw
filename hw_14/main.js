@@ -146,7 +146,7 @@ function addClassToElements(elementName, className) {
 }
 addClassToElements(gridEl, 'grid start');
 addClassToElements(topEl, 'top');
-addClassToElements(startBtn, 'btn btn-start btn-disabled btn-blue');
+addClassToElements(startBtn, 'btn btn-start btn-blue ');
 addClassToElements(clickCounter, 'counter click-counter');
 addClassToElements(scoreCounter, 'counter score-counter');
 addClassToElements(replayBtn, 'btn btn-replay btn-violet;');
@@ -164,6 +164,15 @@ function handlePlayGame() {
 	HeadEl.querySelector('title').textContent = 'Гра почалась';
 	randomMixCells();
 	gridEl.classList.remove('start');
+	startBtn.classList.add('btn-disabled');
 }
 //! 4.1
-handlePlayGame();
+//handlePlayGame();
+
+//* task # 5
+wrapperEl.addEventListener('click', (e) => {
+	const targetBtn = e.target;
+	if (targetBtn.classList.contains('btn-start')) {
+		handlePlayGame();
+	}
+});
