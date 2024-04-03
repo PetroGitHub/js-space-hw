@@ -104,9 +104,9 @@ const colorsArray = [
 	'#c708ff',
 ];
 
-// task # 1
+//* task # 1
 const wrapperEl = document.querySelector('.wrapper');
-//console.log(wrapperEl);
+console.log(wrapperEl);
 const gridEl = document.createElement('div');
 
 wrapperEl.insertAdjacentElement('afterbegin', gridEl);
@@ -118,7 +118,7 @@ for (let i = 100; i > 0; i--) {
 	cellEl.classList.add('cell');
 }
 
-// task # 2
+//* task # 2
 //! 2.1
 const topEl = document.createElement('div');
 const startBtn = document.createElement('button');
@@ -137,11 +137,18 @@ addElementIntoWrapper(topEl, startBtn);
 function addClassToElements(elementName, className) {
 	elementName.className = className;
 }
-addClassToElements(gridEl, 'grid start');
+addClassToElements(gridEl, 'grid ');
 addClassToElements(topEl, 'top');
 addClassToElements(startBtn, 'btn btn-start btn-blue');
 addClassToElements(clickCounter, 'click-counter');
 addClassToElements(scoreCounter, 'counter score-counter');
 addClassToElements(replayBtn, 'btn btn-replay btn-violet;');
 
-//console.log(clickCounter, scoreCounter, replayBtn);
+//* task # 3
+function randomMixCells() {
+	let cellArray = [...gridEl.children];
+	cellArray.sort(() => Math.random() - 0.5);
+	cellArray.forEach((cell) => gridEl.prepend(cell));
+}
+//! 3.2
+randomMixCells();
