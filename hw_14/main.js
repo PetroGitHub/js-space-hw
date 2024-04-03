@@ -105,7 +105,9 @@ const colorsArray = [
 ];
 
 //* task # 1
+const HeadEl = document.querySelector('head');
 const wrapperEl = document.querySelector('.wrapper');
+console.log(HeadEl);
 console.log(wrapperEl);
 const gridEl = document.createElement('div');
 
@@ -122,25 +124,30 @@ for (let i = 100; i > 0; i--) {
 //! 2.1
 const topEl = document.createElement('div');
 const startBtn = document.createElement('button');
+startBtn.setAttribute('title', 'Перемішати');
 //! 2.2
 const clickCounter = document.createElement('div');
 const scoreCounter = document.createElement('div');
 const replayBtn = document.createElement('button');
-
+clickCounter.textContent = '0';
+scoreCounter.textContent = '0';
 function addElementIntoWrapper(commonEl, insertedEl, position = 'afterbegin') {
 	commonEl.insertAdjacentElement(position, insertedEl);
 }
 addElementIntoWrapper(wrapperEl, gridEl);
 addElementIntoWrapper(wrapperEl, topEl);
 addElementIntoWrapper(topEl, startBtn);
+addElementIntoWrapper(topEl, clickCounter, 'beforeend');
+addElementIntoWrapper(topEl, scoreCounter, 'beforeend');
+addElementIntoWrapper(topEl, replayBtn, 'beforeend');
 
 function addClassToElements(elementName, className) {
 	elementName.className = className;
 }
-addClassToElements(gridEl, 'grid ');
+addClassToElements(gridEl, 'grid start');
 addClassToElements(topEl, 'top');
-addClassToElements(startBtn, 'btn btn-start btn-blue');
-addClassToElements(clickCounter, 'click-counter');
+addClassToElements(startBtn, 'btn btn-start btn-disabled btn-blue');
+addClassToElements(clickCounter, 'counter click-counter');
 addClassToElements(scoreCounter, 'counter score-counter');
 addClassToElements(replayBtn, 'btn btn-replay btn-violet;');
 
@@ -151,4 +158,12 @@ function randomMixCells() {
 	cellArray.forEach((cell) => gridEl.prepend(cell));
 }
 //! 3.2
-randomMixCells();
+
+//* task # 4
+function handlePlayGame() {
+	HeadEl.querySelector('title').textContent = 'Гра почалась';
+	randomMixCells();
+	gridEl.classList.remove('start');
+}
+//! 4.1
+handlePlayGame();
