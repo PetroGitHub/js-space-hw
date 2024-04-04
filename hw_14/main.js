@@ -112,11 +112,10 @@ console.log(wrapperEl);
 const gridEl = document.createElement('div');
 
 wrapperEl.insertAdjacentElement('afterbegin', gridEl);
-
-for (let i = 100; i > 0; i--) {
+for (let i = 1; i <= 100; i++) {
 	const cellEl = document.createElement('div');
 	cellEl.textContent = i;
-	gridEl.insertAdjacentElement('afterbegin', cellEl);
+	gridEl.insertAdjacentElement('beforeend', cellEl);
 	cellEl.classList.add('cell');
 }
 
@@ -131,6 +130,7 @@ const scoreCounter = document.createElement('div');
 const replayBtn = document.createElement('button');
 clickCounter.textContent = '0';
 scoreCounter.textContent = '0';
+console.log(clickCounter);
 function addElementIntoWrapper(commonEl, insertedEl, position = 'afterbegin') {
 	commonEl.insertAdjacentElement(position, insertedEl);
 }
@@ -172,7 +172,42 @@ function handlePlayGame() {
 //* task # 5
 wrapperEl.addEventListener('click', (e) => {
 	const targetBtn = e.target;
-	if (targetBtn.classList.contains('btn-start')) {
+	if (targetBtn.classList.contains('btn-start', 'cell')) {
 		handlePlayGame();
 	}
 });
+
+//* task # 6
+let colorIndex = 0;
+let currentScore = parseInt(scoreCounter.textContent);
+function handleClickCalculatingGame() {
+	wrapperEl.addEventListener('click', (e) => {
+		const cellBtn = e.target;
+		if (
+			cellBtn.classList.contains('cell') &&
+			!cellBtn.classList.contains('clicked')
+		) {
+			cellBtn.classList.add('clicked');
+
+			clickCounter.textContent++;
+			let clickedNumber = parseInt(cellBtn.textContent);
+			currentScore += clickedNumber;
+			scoreCounter.textContent = currentScore;
+
+			if (colorIndex < colorsArray.length) {
+				cellBtn.style.backgroundColor = colorsArray[colorIndex];
+				colorIndex++;
+			}
+			if (currentScore === 1000) {
+				addClassToElements(gridEl, 'grid start win');
+				HeadEl.querySelector('title').textContent = 'Виграш!!!';
+			} else {
+				if (currentScore > 1000) {
+					addClassToElements(gridEl, 'grid start loss');
+					HeadEl.querySelector('title').textContent = 'Невдача';
+				}
+			}
+		}
+	});
+}
+handleClickCalculatingGame();
