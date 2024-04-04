@@ -130,7 +130,7 @@ const scoreCounter = document.createElement('div');
 const replayBtn = document.createElement('button');
 clickCounter.textContent = '0';
 scoreCounter.textContent = '0';
-console.log(clickCounter);
+
 function addElementIntoWrapper(commonEl, insertedEl, position = 'afterbegin') {
 	commonEl.insertAdjacentElement(position, insertedEl);
 }
@@ -172,15 +172,18 @@ function handlePlayGame() {
 //* task # 5
 wrapperEl.addEventListener('click', (e) => {
 	const targetBtn = e.target;
-	if (targetBtn.classList.contains('btn-start', 'cell')) {
+	if (targetBtn.classList.contains('btn-start', 'cell', 'btn-replay')) {
 		handlePlayGame();
+		handleClickCalculatingGame();
+		handleResetGame();
 	}
 });
 
 //* task # 6
 let colorIndex = 0;
-let currentScore = parseInt(scoreCounter.textContent);
 function handleClickCalculatingGame() {
+	let currentScore = parseInt(scoreCounter.textContent);
+
 	wrapperEl.addEventListener('click', (e) => {
 		const cellBtn = e.target;
 		if (
@@ -210,4 +213,26 @@ function handleClickCalculatingGame() {
 		}
 	});
 }
-handleClickCalculatingGame();
+
+//* task # 7
+let cellArray = [...gridEl.children];
+
+function handleResetGame() {
+	wrapperEl.addEventListener('click', (e) => {
+		const resetBtn = e.target;
+		if (resetBtn.classList.contains('btn-replay')) {
+			HeadEl.querySelector('title').textContent = 'Гра почалася';
+			addClassToElements(gridEl, 'grid');
+			clickCounter.textContent = '0';
+			scoreCounter.textContent = '0';
+
+			cellArray.forEach((cell) => {
+				if (cell.classList.contains('clicked')) {
+					cell.classList.remove('clicked');
+					cell.style.backgroundColor = '';
+				}
+			});
+			randomMixCells();
+		}
+	});
+}
