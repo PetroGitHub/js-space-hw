@@ -9,7 +9,7 @@ git remote add origin https://github.com/PetroGitHub/ashtangacards.gitgit
 git push -u origin main
 git push origin homework-14
 
-git checkout -b "homework_14" -  создаем ветку "homework_14"
+git checkout -b "homework_15" -  создаем ветку "homework_15"
 git branch dev  -  создаем ветку dev
 git checkout dev
 git push origin dev  - отправляем на GitHub ветка dev.
