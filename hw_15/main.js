@@ -185,7 +185,7 @@ const handleStartBtnClick = () => {
 
 //* task # 6
 //? HW 15 task 2
-const gameResultArray = [];
+let gameResultArray = [];
 
 const handleCellClick = (cellItem) => {
 	const buttonIndex = [...allGridCellsEl].findIndex(
@@ -250,6 +250,10 @@ wrapperEL.addEventListener('click', (e) => {
 		const resultBlock = document.querySelector('.results');
 		resultBlock.remove();
 	}
+	//! HW # 15 task 4.3
+	if (targetBtn.classList.contains('results-clear')) {
+		clearAllResults();
+	}
 });
 
 //! HW # 15---------------------------------------------
@@ -270,7 +274,7 @@ function handleGameResults() {
 		const resultText = document.querySelector('.results-text');
 		resultText.remove();
 	}
-	//! task 3.6
+	//* task 3.6
 	const resultList = document.querySelector('.results-list');
 	gameResultArray.forEach((result) => {
 		resultList.insertAdjacentHTML(
@@ -288,4 +292,21 @@ function handleGameResults() {
 	});
 	const clearResult = document.querySelector('.results-clear');
 	clearResult.classList.remove('btn-disabled');
+}
+
+//* task # 4
+
+function clearAllResults() {
+	while (gameResultArray.length) {
+		gameResultArray.pop();
+	}
+	const resultList = document.querySelector('.results-list');
+	resultList.remove();
+	const clearResult = document.querySelector('.results-clear');
+	clearResult.classList.add('btn-disabled');
+	const resultHead = document.querySelector('.results-head');
+	resultHead.insertAdjacentHTML(
+		'afterend',
+		`<div class="results-text">Немає результатів</div>`
+	);
 }
