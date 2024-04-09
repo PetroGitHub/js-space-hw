@@ -166,6 +166,8 @@ const handleStartBtnClick = () => {
 //* task # 5
 
 //* task # 6
+//? HW 15 task 2
+const gameResultArray = [];
 
 const handleCellClick = (cellItem) => {
 	const buttonIndex = [...allGridCellsEl].findIndex(
@@ -183,11 +185,11 @@ const handleCellClick = (cellItem) => {
 	if (scoreCounter === FINAL_RESULT) {
 		gridEl.classList.add('win');
 		headTitleEl.textContent = 'Виграш!!!';
-		getFinalGameResult();
+		gameResultArray.push(getFinalGameResult());
 	} else if (scoreCounter > FINAL_RESULT) {
 		gridEl.classList.add('loss');
 		headTitleEl.textContent = 'Невдача';
-		getFinalGameResult();
+		gameResultArray.push(getFinalGameResult());
 	}
 };
 
