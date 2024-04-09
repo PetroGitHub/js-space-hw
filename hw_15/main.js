@@ -135,7 +135,6 @@ const creatElementOnPage = (tagName, ClassNames, content = '') => {
 const clickCounterEl = creatElementOnPage('div', 'counter click-counter', '0');
 const scoreCounterEl = creatElementOnPage('div', 'counter score-counter', '0');
 const btnPlayEl = creatElementOnPage('button', 'btn btn-replay btn-violet', '');
-console.log(clickCounterEl);
 
 //* task # 3
 
@@ -172,7 +171,6 @@ const handleCellClick = (cellItem) => {
 	const buttonIndex = [...allGridCellsEl].findIndex(
 		(cell) => cell === cellItem
 	);
-	console.log(buttonIndex);
 	if (!cellItem.classList.contains('clicked')) {
 		cellItem.classList.add('clicked');
 		cellItem.style.backgroundColor = colorsArray[buttonIndex];
@@ -185,9 +183,11 @@ const handleCellClick = (cellItem) => {
 	if (scoreCounter === FINAL_RESULT) {
 		gridEl.classList.add('win');
 		headTitleEl.textContent = 'Виграш!!!';
+		getFinalGameResult();
 	} else if (scoreCounter > FINAL_RESULT) {
 		gridEl.classList.add('loss');
 		headTitleEl.textContent = 'Невдача';
+		getFinalGameResult();
 	}
 };
 
@@ -222,3 +222,15 @@ wrapperEL.addEventListener('click', (e) => {
 		handleGameProgressResset();
 	}
 });
+
+//! HW # 15---------------------------------------------
+
+//* task # 1
+
+const getFinalGameResult = () => {
+	const finalGameResult = {
+		clicks: clickCounter,
+		score: scoreCounter,
+	};
+	return finalGameResult;
+};
