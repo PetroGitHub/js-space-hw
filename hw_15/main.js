@@ -116,6 +116,17 @@ for (let i = 0; i < 100; i++) {
 }
 gridEl.classList.add('start');
 
+//! HW # 15 task 3.1
+const blockResultsEl = `<div class="results">
+<div class="results-head">
+	<div>Результати</div>
+	<button class="btn btn-close btn-transparent"></button>
+</div>
+<div class="results-text">Немає результатів</div>
+<ul class="results-list"></ul> 
+<button class="results-clear btn-disabled">Очистити результати</button>
+</div>`;
+
 //* task # 2
 
 wrapperEL.insertAdjacentHTML(
@@ -134,7 +145,13 @@ const creatElementOnPage = (tagName, ClassNames, content = '') => {
 };
 const clickCounterEl = creatElementOnPage('div', 'counter click-counter', '0');
 const scoreCounterEl = creatElementOnPage('div', 'counter score-counter', '0');
-const btnPlayEl = creatElementOnPage('button', 'btn btn-replay btn-violet', '');
+const btnPlayEl = creatElementOnPage('button', 'btn btn-result btn-purple', '');
+//! HW # 15 task 3.1
+const btnResultEl = creatElementOnPage(
+	'button',
+	'btn btn-replay btn-violet',
+	''
+);
 
 //* task # 3
 
@@ -160,6 +177,7 @@ const handleStartBtnClick = () => {
 	document.querySelector('.btn-start').classList.add('btn-disabled');
 	topEl.insertAdjacentElement('beforeend', clickCounterEl);
 	topEl.insertAdjacentElement('beforeend', scoreCounterEl);
+	topEl.insertAdjacentElement('beforeend', btnResultEl); //! HW # 15 task 3.1
 	topEl.insertAdjacentElement('beforeend', btnPlayEl);
 };
 
@@ -223,6 +241,15 @@ wrapperEL.addEventListener('click', (e) => {
 	if (targetBtn.classList.contains('btn-replay')) {
 		handleGameProgressResset();
 	}
+	//! HW # 15 task 3.4
+	if (targetBtn.classList.contains('btn-result')) {
+		handleGameResults();
+	}
+	//! HW # 15 task 3.5
+	if (targetBtn.classList.contains('btn-close')) {
+		const resultBlock = document.querySelector('.results');
+		resultBlock.remove();
+	}
 });
 
 //! HW # 15---------------------------------------------
@@ -236,3 +263,29 @@ const getFinalGameResult = () => {
 	};
 	return finalGameResult;
 };
+
+function handleGameResults() {
+	wrapperEL.insertAdjacentHTML('beforeend', blockResultsEl);
+	if (gameResultArray.length !== 0) {
+		const resultText = document.querySelector('.results-text');
+		resultText.remove();
+	}
+	//! task 3.6
+	const resultList = document.querySelector('.results-list');
+	gameResultArray.forEach((result) => {
+		resultList.insertAdjacentHTML(
+			'beforeend',
+			`<li class="results-item">
+								<span>Кліків: ${result.clicks}</span>
+								<span>Балів: ${result.score}</span>
+								<span>${
+									result.score > 999 && result.score === 1000
+										? 'Виграш'
+										: 'Невдача'
+								}</span>
+						</li>`
+		);
+	});
+	const clearResult = document.querySelector('.results-clear');
+	clearResult.classList.remove('btn-disabled');
+}
