@@ -116,7 +116,7 @@ for (let i = 0; i < 100; i++) {
 }
 gridEl.classList.add('start');
 
-//! HW # 15 task 3.1
+//! HW # 15 task 3.2
 const blockResultsEl = `<div class="results">
 <div class="results-head">
 	<div>Результати</div>
@@ -145,13 +145,13 @@ const creatElementOnPage = (tagName, ClassNames, content = '') => {
 };
 const clickCounterEl = creatElementOnPage('div', 'counter click-counter', '0');
 const scoreCounterEl = creatElementOnPage('div', 'counter score-counter', '0');
-const btnPlayEl = creatElementOnPage('button', 'btn btn-result btn-purple', '');
-//! HW # 15 task 3.1
 const btnResultEl = creatElementOnPage(
 	'button',
-	'btn btn-replay btn-violet',
+	'btn btn-result btn-purple',
 	''
 );
+//! HW # 15 task 3.1
+const btnPlayEl = creatElementOnPage('button', 'btn btn-replay btn-violet', '');
 
 //* task # 3
 
@@ -177,14 +177,14 @@ const handleStartBtnClick = () => {
 	document.querySelector('.btn-start').classList.add('btn-disabled');
 	topEl.insertAdjacentElement('beforeend', clickCounterEl);
 	topEl.insertAdjacentElement('beforeend', scoreCounterEl);
-	topEl.insertAdjacentElement('beforeend', btnResultEl); //! HW # 15 task 3.1
 	topEl.insertAdjacentElement('beforeend', btnPlayEl);
+	topEl.insertAdjacentElement('beforeend', btnResultEl); //! HW # 15 task 3.1
 };
 
 //* task # 5
 
 //* task # 6
-//? HW 15 task 2
+//! HW 15 task 2
 let gameResultArray = [];
 
 const handleCellClick = (cellItem) => {
@@ -204,10 +204,12 @@ const handleCellClick = (cellItem) => {
 		gridEl.classList.add('win');
 		headTitleEl.textContent = 'Виграш!!!';
 		gameResultArray.push(getFinalGameResult());
+		saveResultsInLocalStorage(gameResultArray);
 	} else if (scoreCounter > FINAL_RESULT) {
 		gridEl.classList.add('loss');
 		headTitleEl.textContent = 'Невдача';
 		gameResultArray.push(getFinalGameResult());
+		saveResultsInLocalStorage(gameResultArray);
 	}
 };
 
@@ -267,12 +269,14 @@ const getFinalGameResult = () => {
 	};
 	return finalGameResult;
 };
-
+//* task 3.3
 function handleGameResults() {
 	wrapperEL.insertAdjacentHTML('beforeend', blockResultsEl);
 	if (gameResultArray.length !== 0) {
 		const resultText = document.querySelector('.results-text');
 		resultText.remove();
+		const clearResult = document.querySelector('.results-clear');
+		clearResult.classList.remove('btn-disabled');
 	}
 	//* task 3.6
 	const resultList = document.querySelector('.results-list');
@@ -290,16 +294,12 @@ function handleGameResults() {
 						</li>`
 		);
 	});
-	const clearResult = document.querySelector('.results-clear');
-	clearResult.classList.remove('btn-disabled');
 }
 
 //* task # 4
 
 function clearAllResults() {
-	while (gameResultArray.length) {
-		gameResultArray.pop();
-	}
+	gameResultArray.length = 0;
 	const resultList = document.querySelector('.results-list');
 	resultList.remove();
 	const clearResult = document.querySelector('.results-clear');
@@ -309,4 +309,16 @@ function clearAllResults() {
 		'afterend',
 		`<div class="results-text">Немає результатів</div>`
 	);
+	saveResultsInLocalStorage(gameResultArray);
+}
+
+//* task # 5
+
+function saveResultsInLocalStorage(resultArray) {
+	localStorage.setItem('savedResultArray', JSON.stringify(resultArray));
+}
+
+const savedResults = localStorage.getItem('savedResultArray');
+if (savedResults) {
+	gameResultArray = JSON.parse(savedResults);
 }
